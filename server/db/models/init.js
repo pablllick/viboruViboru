@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'allPeople',
         foreignKey: 'initId',
       });
-      this.belongsTo(models.Users, { foreignKey: 'authorId' });
+      this.belongsTo(models.User, { foreignKey: 'authorId' });
     }
   }
   Init.init(
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Init',
-    },
+    }
   );
   return Init;
 };

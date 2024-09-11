@@ -5,6 +5,9 @@ import MainPage from './components/pages/MainPage';
 import AccountLoginPage from './components/pages/AccountLoginPage';
 import AccountNewPage from './components/pages/AccountNewPage';
 import useUser from './hooks/useUser';
+import OneInitPage from './components/pages/OneInitPage';
+import OneUserPage from './components/pages/OneUserPage';
+import AddInitPage from './components/pages/AddInitPage';
 
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user } = useUser();
@@ -17,6 +20,18 @@ function App() {
         {
           path: '/',
           element: <MainPage user={user} />,
+        },
+        {
+          path: '/inits/:id',
+          element: <OneInitPage user={user} />,
+        },
+        {
+          path: '/users/:id',
+          element: <OneUserPage user={user} />,
+        },
+        {
+          path: '/inits/add',
+          element: <AddInitPage user={user} />,
         },
         {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} />,
