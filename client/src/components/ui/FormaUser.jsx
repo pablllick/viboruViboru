@@ -8,18 +8,18 @@ function FormaUser({ user }) {
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={user.url} />
       <Card.Body>
-        <ListGroup.Item>{user.surName}</ListGroup.Item>
-        <ListGroup.Item>{user.secondName}</ListGroup.Item>
+        <ListGroup.Item>{user.surname}</ListGroup.Item>
+        <ListGroup.Item>{user.lastName}</ListGroup.Item>
         <ListGroup.Item>{user.name}</ListGroup.Item>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>{user.email}</ListGroup.Item>
-        <ListGroup.Item>{Init.password}</ListGroup.Item>
+        <ListGroup.Item>{user.hashpass}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <ListGroup.Item> {user.FedDistrict}</ListGroup.Item>
-        <ListGroup.Item> {user.Region}</ListGroup.Item>
-        <ListGroup.Item> {user.Municipality}</ListGroup.Item>
+        <ListGroup.Item> {user.fedDistrict}</ListGroup.Item>
+        <ListGroup.Item> {user.region}</ListGroup.Item>
+        <ListGroup.Item> {user.municipality}</ListGroup.Item>
       </Card.Body>
       <Card.Body>
         <Button>?</Button>

@@ -14,7 +14,6 @@ function FormaInit({ init }) {
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>{init.level}</ListGroup.Item>
-        <ListGroup.Item>{init.theme}</ListGroup.Item>
         <ListGroup.Item>{init.dateEnd}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
