@@ -54,7 +54,7 @@ module.exports = {
       },
       {
         userId: 2,
-        initId: 1,
+        initId: 2,
         vote: true,
       },
       {
