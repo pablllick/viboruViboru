@@ -7,14 +7,19 @@ const cookiesConfig = require('../configs/cookiesConfig');
 const accountRouter = express.Router();
 
 accountRouter.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
-  if (!email || !password || !name) {
+  const { name, email, password, surname, lastName } = req.body;
+  if (!email || !password || !name || !surname || !lastName) {
     return res.status(400).json({ message: 'Заполни все поля' });
   }
 
   const [newUser, created] = await User.findOrCreate({
     where: { email },
-    defaults: { name, hashpass: await bcrypt.hash(password, 10) },
+    defaults: {
+      name,
+      surname,
+      lastName,
+      hashpass: await bcrypt.hash(password, 10),
+    },
   });
 
   if (!created) {

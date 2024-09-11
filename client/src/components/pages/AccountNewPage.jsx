@@ -15,6 +15,14 @@ export default function AccountNewPage({ signUpHandler }) {
             <Form.Label>Имя</Form.Label>
             <Form.Control name="name" type="text" placeholder="Введите имя" />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>Фамилия</Form.Label>
+            <Form.Control name="lastName" type="text" placeholder="Введите Фамилию" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>Отчество</Form.Label>
+            <Form.Control name="surname" type="text" placeholder="Введите Отчество" />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control name="email" type="email" placeholder="Введите email" />
