@@ -6,7 +6,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 
 export default function NavBar({ user, logoutHandler }) {
-
   return (
     <Navbar bg="light" data-bs-theme="light">
       <Container>
@@ -14,16 +13,24 @@ export default function NavBar({ user, logoutHandler }) {
           <NavLink to="/" className="nav-link">
             Главная
           </NavLink>
-
+          <NavLink to="/inits/add" className="nav-link">
+            Добавить
+          </NavLink>
+          <NavLink to="/inits/:id" className="nav-link">
+            Одна Инициатива
+          </NavLink>
+          <NavLink to="/users/:id" className="nav-link">
+            Профиль
+          </NavLink>
         </Nav>
         <Nav>
           {!user.data && (
             <>
               <NavLink to="/account/login" className="nav-link">
-              Войти
+                Войти
               </NavLink>
               <NavLink to="/account/new" className="nav-link">
-              Регистрация
+                Регистрация
               </NavLink>
               <span className="nav-link">|</span>
             </>
@@ -34,7 +41,11 @@ export default function NavBar({ user, logoutHandler }) {
           </span>
           {user.data && (
             <span className="nav-link">
-              <Button onClick={logoutHandler} variant="outline-danger" size="sm">
+              <Button
+                onClick={logoutHandler}
+                variant="outline-danger"
+                size="sm"
+              >
                 Выйти
               </Button>
             </span>
