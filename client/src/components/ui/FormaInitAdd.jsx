@@ -14,7 +14,7 @@ function FormaInitAdd() {
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>motivation</Form.Label>
-          <Form.Control type="password" placeholder="motivation" />
+          <Form.Control type="text" placeholder="motivation" />
         </Form.Group>
       </Row>
 
