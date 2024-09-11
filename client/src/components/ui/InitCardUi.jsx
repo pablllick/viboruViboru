@@ -16,7 +16,7 @@ function InitCardUi({ init }) {
         </Card.Text>
         <Button
           onClick={() => {
-            navigate(`/${init.id}`);
+            navigate(`/inits/${init.id}`);
           }}
           variant="primary"
         >

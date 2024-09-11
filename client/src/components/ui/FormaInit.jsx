@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import axiosInstance from "../api/axiosInstance";
 
 function FormaInit({ init }) {
+  const [votes, setVotes] = useState([]);
+
+  useEffect(() => {
+    axiosInstance('/')
+  }, []);
+
+
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={init.url} />

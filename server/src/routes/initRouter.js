@@ -1,8 +1,17 @@
 const express = require('express');
-const { Init } = require('../../db/models');
+const { Init, User, UserInit } = require('../../db/models');
 const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const initRouter = express.Router();
+
+initRouter.route('/qwer').get(async (req, res) => {
+  try {
+    res.json(await UserInit.findAll());
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
 
 initRouter
   .route('/')
@@ -40,6 +49,25 @@ initRouter.route('/:id').get(async (req, res) => {
     const init = await Init.findByPk(id);
     if (!init) return res.json({ message: 'Несуществующий id' });
     res.json(init);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+initRouter.route('/votes/:id').get(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const people = await Init.findOne({
+      where: { id },
+      include: {
+        model: User,
+        as: 'allPeople',
+        attributes: { exclude: ['hashpass', 'email', 'surname'] },
+        through: { attributes: ['vote', 'userId', 'initId'] },
+      },
+    });
+    res.json(people);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
