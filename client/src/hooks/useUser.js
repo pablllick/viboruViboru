@@ -4,7 +4,6 @@ import axiosInstance, { setAccessToken } from '../components/api/axiosInstance';
 export default function useUser() {
   const [user, setUser] = useState({ status: 'fetching', data: null });
   console.log(user);
-  
 
   useEffect(() => {
     axiosInstance('/tokens/refresh')

@@ -9,6 +9,7 @@ import OneInitPage from './components/pages/OneInitPage';
 import OneUserPage from './components/pages/OneUserPage';
 import AddInitPage from './components/pages/AddInitPage';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user, setUser } =
