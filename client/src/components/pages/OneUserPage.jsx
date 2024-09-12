@@ -3,29 +3,26 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
 import FormaUser from '../ui/FormaUser';
+import FormaUpdateUser from '../ui/FormaUpdateUser';
 
-export default function OneUserPage() {
-  const { id } = useParams();
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+export default function OneUserPage({ setUser, user }) {
+  const [show, setShow] = useState(true);
 
-  useEffect(() => {
-    axiosInstance(`/users/${id}`)
-      .then(({ data }) => {
-        setUser(data);
-      })
-      .catch((error) => {
-        setError(error.response?.data?.message || 'Ошибка сервера');
-      });
-  }, [id]);
-
-  if (error) {
-    return <div>Ошибка: {error}</div>;
+  function clickHandler() {
+    setShow(!show);
   }
 
   if (!user) {
     return <div>Загрузка...</div>;
   }
 
-  return <FormaUser key={user.id} user={user} />;
+  return (
+    <div>
+      {show ? (
+        <FormaUser key={user.id} user={user.data} clickHandler={clickHandler} />
+      ) : (
+        <FormaUpdateUser setUser={setUser} user={user.data} />
+      )}
+    </div>
+  );
 }

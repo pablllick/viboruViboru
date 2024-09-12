@@ -3,7 +3,9 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-function FormaUser({ user }) {
+function FormaUser({ user,clickHandler }) {
+
+ 
   console.log({ user });
 
   return (
@@ -24,7 +26,7 @@ function FormaUser({ user }) {
         <ListGroup.Item>{user.municipality}</ListGroup.Item>
       </Card.Body>
       <Card.Body>
-        <Button>?</Button>
+        <Button onClick={clickHandler}>редактировать</Button>
       </Card.Body>
     </Card>
   );
