@@ -18,9 +18,6 @@ export default function NavBar({ user, logoutHandler }) {
           <NavLink to="/inits/add" className="nav-link">
             Добавить
           </NavLink>
-          <NavLink to="/inits/:id" className="nav-link">
-            Одна Инициатива
-          </NavLink>
           <NavLink to={`/users/${user?.data.id}`} className="nav-link">
             Профиль
           </NavLink>
