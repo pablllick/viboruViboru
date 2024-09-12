@@ -69,6 +69,7 @@ export default function useUser() {
 
   return {
     user,
+    setUser,
     signInHandler,
     signUpHandler,
     logoutHandler,

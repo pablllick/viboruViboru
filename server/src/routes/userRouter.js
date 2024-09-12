@@ -19,10 +19,10 @@ userRouter
   })
   .patch(verifyAccessToken, async (req, res) => {
     try {
-      const { id } = res.locals;
+      const { user } = res.locals;
       const { name, lastName, surname, fedDistrict, region, municipality } =
         req.body;
-      await User.update(
+      const updatedUser = await User.update(
         {
           name,
           lastName,
@@ -31,10 +31,11 @@ userRouter
           region,
           municipality,
         },
-        { where: { id } }
+        { where: { id: user.id } }
       );
+
       res.json(
-        await User.findByPk(id, {
+        await User.findByPk(user.id, {
           attributes: { exclude: ['hashpass', 'createdAt', 'updatedAt'] },
         })
       );
