@@ -17,10 +17,9 @@ userRouter
       res.status(500).json({ message: 'Ошибка сервера' });
     }
   })
-  .patch(async (req, res) => {
+  .patch(verifyAccessToken, async (req, res) => {
     try {
-      const id = 1;
-      // const { id } = res.locals;
+      const { id } = res.locals;
       const { name, lastName, surname, fedDistrict, region, municipality } =
         req.body;
       await User.update(
