@@ -33,7 +33,11 @@ userRouter
         },
         { where: { id } }
       );
-      res.send('все ок');
+      res.json(
+        await User.findByPk(id, {
+          attributes: { exclude: ['hashpass', 'createdAt', 'updatedAt'] },
+        })
+      );
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
