@@ -17,6 +17,29 @@ userRouter
       res.status(500).json({ message: 'Ошибка сервера' });
     }
   })
+  .patch(async (req, res) => {
+    try {
+      const id = 1;
+      // const { id } = res.locals;
+      const { name, lastName, surname, fedDistrict, region, municipality } =
+        req.body;
+      await User.update(
+        {
+          name,
+          lastName,
+          surname,
+          fedDistrict,
+          region,
+          municipality,
+        },
+        { where: { id } }
+      );
+      res.send('все ок');
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
+  })
   .post(verifyAccessToken, async (req, res) => {
     try {
       const { name, lastName, surname, email } = req.body;
