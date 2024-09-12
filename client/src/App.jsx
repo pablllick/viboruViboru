@@ -8,11 +8,18 @@ import useUser from './hooks/useUser';
 import OneInitPage from './components/pages/OneInitPage';
 import OneUserPage from './components/pages/OneUserPage';
 import AddInitPage from './components/pages/AddInitPage';
+import { useEffect, useState } from 'react';
 
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user, setUser } =
     useUser();
 
+  const [inits, setInits] = useState([]);
+  useEffect(() => {
+    axios('/api/inits').then(({ data }) => {
+      setInits(data);
+    });
+  }, []);
   const router = createBrowserRouter([
     {
       path: '/',
@@ -20,7 +27,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: <MainPage user={user} />,
+          element: <MainPage user={user} inits={inits} />,
         },
         {
           path: '/inits/:id',
@@ -32,7 +39,7 @@ function App() {
         },
         {
           path: '/inits/add',
-          element: <AddInitPage user={user} />,
+          element: <AddInitPage user={user} setInits={setInits} />,
         },
         {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} />,

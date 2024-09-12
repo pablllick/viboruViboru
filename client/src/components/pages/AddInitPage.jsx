@@ -1,8 +1,8 @@
 import React from 'react'
 import FormaInitAdd from '../ui/FormaInitAdd'
 
-export default function AddInitPage() {
+export default function AddInitPage({ setInits }) {
   return (
-    <FormaInitAdd />
+    <FormaInitAdd setInits={setInits} />
   )
 }
