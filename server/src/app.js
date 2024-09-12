@@ -5,6 +5,7 @@ const accountRouter = require('./routes/accountRouter');
 const tokensRouter = require('./routes/tokensRouter');
 const userRouter = require('./routes/userRouter');
 const initRouter = require('./routes/initRouter');
+const voteRouter = require('./routes/voteRouter');
 
 const app = express();
 
@@ -17,6 +18,6 @@ app.use('/api/account/', accountRouter);
 app.use('/api/tokens/', tokensRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/inits/', initRouter);
-0
+app.use('/api/votes', voteRouter);
 
 module.exports = app;
