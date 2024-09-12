@@ -10,12 +10,13 @@ import OneUserPage from './components/pages/OneUserPage';
 import AddInitPage from './components/pages/AddInitPage';
 
 function App() {
-  const { logoutHandler, signInHandler, signUpHandler, user } = useUser();
+  const { logoutHandler, signInHandler, signUpHandler, user, setUser } =
+    useUser();
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Layout user={user} logoutHandler={logoutHandler}  />,
+      element: <Layout user={user} logoutHandler={logoutHandler} />,
       children: [
         {
           path: '/',
@@ -27,7 +28,7 @@ function App() {
         },
         {
           path: '/users/:id',
-          element: <OneUserPage user={user} />,
+          element: <OneUserPage user={user} setUser={setUser} />,
         },
         {
           path: '/inits/add',
