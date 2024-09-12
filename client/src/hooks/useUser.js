@@ -4,7 +4,6 @@ import axiosInstance, { setAccessToken } from '../components/api/axiosInstance';
 export default function useUser() {
   const [user, setUser] = useState({ status: 'fetching', data: null });
   console.log(user);
-  
 
   useEffect(() => {
     axiosInstance('/tokens/refresh')
@@ -69,6 +68,7 @@ export default function useUser() {
 
   return {
     user,
+    setUser,
     signInHandler,
     signUpHandler,
     logoutHandler,

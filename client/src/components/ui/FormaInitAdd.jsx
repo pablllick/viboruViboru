@@ -1,11 +1,35 @@
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import axiosInstance from '../api/axiosInstance';
 
-function FormaInitAdd() {
+function FormaInitAdd({ setInit }) {
+  const addInitHandler = (e) => {
+    e.preventDefault();
+    const formData = Object.fromEntries(new FormData(e.target));
+    console.log('--------------------------', formData);
+
+    if (
+      !formData.name ||
+      !formData.motivation ||
+      !formData.theme ||
+      !formData.dateEnd ||
+      !formData.level
+    ) {
+      return alert('Заполните все поля!');
+    }
+    axiosInstance
+      .post('/inits', formData)
+      .then(({ data }) => {
+        setInit(prev);
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
+      });
+  };
   return (
-    <Form>
+    <Form onSubmit={addInitHandler}>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Name</Form.Label>

@@ -6,7 +6,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 
 export default function NavBar({ user, logoutHandler }) {
-
   return (
     <Navbar bg="light" data-bs-theme="light">
       <Container>
@@ -26,6 +25,9 @@ export default function NavBar({ user, logoutHandler }) {
                 )}
               <NavLink to={`/users/${user?.data.id}`} className="nav-link">
                 Профиль
+              </NavLink>
+              <NavLink to={`/inits/add`} className="nav-link">
+                Добавить инициативу
               </NavLink>
             </>
           )}
