@@ -12,5 +12,5 @@ export default function OneInitPage() {
     });
   }, []);
 
-  return <>{init && <FormaInits key={init.id} init={init} />}</>;
+  return <div style={{display: 'flex', justifyContent: 'center' }}>{init && <FormaInits key={init.id} init={init} />}</div>;
 }
