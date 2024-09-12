@@ -25,7 +25,7 @@ function FormaUpdateUser({ setUser, user }) {
         setUser({ status: 'logged', data });
       })
       .catch((error) => {
-        alert(error.response.data.message);
+        alert(error);
       });
   };
 
@@ -38,7 +38,7 @@ function FormaUpdateUser({ setUser, user }) {
           </InputGroup.Text>
           <Form.Control
             placeholder="Name"
-            defaultValue={user.name}
+            defaultValue={user.data.name}
             name="name"
             aria-label="Username"
             aria-describedby="basic-addon1"
@@ -49,7 +49,7 @@ function FormaUpdateUser({ setUser, user }) {
             lastName
           </InputGroup.Text>
           <Form.Control
-            defaultValue={user.lastName}
+            defaultValue={user.data.lastName}
             name="lastName"
             placeholder="lastName"
             aria-label="Username"
@@ -61,7 +61,7 @@ function FormaUpdateUser({ setUser, user }) {
             surname
           </InputGroup.Text>
           <Form.Control
-            defaultValue={user.surname}
+            defaultValue={user.data.surname}
             name="surname"
             placeholder="surname"
             aria-label="Username"
@@ -76,7 +76,7 @@ function FormaUpdateUser({ setUser, user }) {
             placeholder="fedDistrict"
             aria-label="Username"
             aria-describedby="basic-addon1"
-            defaultValue={user.fedDistrict}
+            defaultValue={user.data.fedDistrict}
             name="fedDistrict"
           />
         </InputGroup>
@@ -85,7 +85,7 @@ function FormaUpdateUser({ setUser, user }) {
             region
           </InputGroup.Text>
           <Form.Control
-            defaultValue={user.region}
+            defaultValue={user.data.region}
             name="region"
             placeholder="region"
             aria-label="Username"
@@ -97,7 +97,7 @@ function FormaUpdateUser({ setUser, user }) {
             municipality
           </InputGroup.Text>
           <Form.Control
-            defaultValue={user.municipality}
+            defaultValue={user.data.municipality}
             name="municipality"
             placeholder="municipality"
             aria-label="Username"

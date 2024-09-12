@@ -16,7 +16,7 @@ initRouter
   })
   .post(verifyAccessToken, async (req, res) => {
     try {
-      const { user } = req.locals;
+      const { user } = res.locals;
       const { name, motivation, level, theme, dateEnd } = req.body;
       res.json(
         await Init.create({

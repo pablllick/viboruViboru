@@ -22,7 +22,7 @@ userRouter
       const { user } = res.locals;
       const { name, lastName, surname, fedDistrict, region, municipality } =
         req.body;
-      await User.update(
+      const updatedUser = await User.update(
         {
           name,
           lastName,
@@ -33,6 +33,7 @@ userRouter
         },
         { where: { id: user.id } }
       );
+
       res.json(
         await User.findByPk(user.id, {
           attributes: { exclude: ['hashpass', 'createdAt', 'updatedAt'] },
