@@ -7,9 +7,10 @@ import axiosInstance from "../api/axiosInstance";
 
 function FormaInit({ init }) {
   const [votes, setVotes] = useState([]);
+  // const {id} = user
 
   useEffect(() => {
-    axiosInstance('/')
+    axiosInstance(`/inits/votes/`)
   }, []);
 
 
