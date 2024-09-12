@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function FormaUser({ user }) {
+  console.log({ user });
+
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={user.url} />
@@ -14,12 +16,12 @@ function FormaUser({ user }) {
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>{user.email}</ListGroup.Item>
-        <ListGroup.Item>{user.hashpass}</ListGroup.Item>
+        {/* Удаляем отображение hashpass */}
       </ListGroup>
       <Card.Body>
-        <ListGroup.Item> {user.fedDistrict}</ListGroup.Item>
-        <ListGroup.Item> {user.region}</ListGroup.Item>
-        <ListGroup.Item> {user.municipality}</ListGroup.Item>
+        <ListGroup.Item>{user.fedDistrict}</ListGroup.Item>
+        <ListGroup.Item>{user.region}</ListGroup.Item>
+        <ListGroup.Item>{user.municipality}</ListGroup.Item>
       </Card.Body>
       <Card.Body>
         <Button>?</Button>

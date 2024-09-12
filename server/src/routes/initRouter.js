@@ -1,17 +1,8 @@
 const express = require('express');
-const { Init, User, UserInit } = require('../../db/models');
+const { Init, User } = require('../../db/models');
 const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const initRouter = express.Router();
-
-initRouter.route('/qwer').get(async (req, res) => {
-  try {
-    res.json(await UserInit.findAll());
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-});
 
 initRouter
   .route('/')
