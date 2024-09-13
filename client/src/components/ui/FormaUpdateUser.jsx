@@ -22,7 +22,7 @@ function FormaUpdateUser({ setUser, user }) {
     axiosInstance
       .patch('/users', formData)
       .then(({ data }) => {
-        setUser({ status: 'logged', data });
+        setUser({ status: 'logged', data: data.user });
       })
       .catch((error) => {
         alert(error);

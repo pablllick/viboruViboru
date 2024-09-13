@@ -1,6 +1,8 @@
 const express = require('express');
 const { User } = require('../../db/models');
 const verifyAccessToken = require('../middlewares/verifyAccessToken');
+const generateTokens = require('../utils/generateTokens');
+const cookiesConfig = require('../configs/cookiesConfig');
 
 const userRouter = express.Router();
 
@@ -22,7 +24,7 @@ userRouter
       const { user } = res.locals;
       const { name, lastName, surname, fedDistrict, region, municipality } =
         req.body;
-      const updatedUser = await User.update(
+      await User.update(
         {
           name,
           lastName,
@@ -33,12 +35,13 @@ userRouter
         },
         { where: { id: user.id } }
       );
-
-      res.json(
-        await User.findByPk(user.id, {
-          attributes: { exclude: ['hashpass', 'createdAt', 'updatedAt'] },
-        })
-      );
+      const newUser = await User.findByPk(user.id, {
+        attributes: { exclude: ['hashpass', 'createdAt', 'updatedAt'] },
+      });
+      const { accessToken, refreshToken } = generateTokens({ user: newUser });
+      res
+        .cookie('refreshToken', refreshToken, cookiesConfig)
+        .json({ user: newUser, accessToken });
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
