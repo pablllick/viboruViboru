@@ -27,6 +27,8 @@ function FormaInitAdd({ setInits }) {
       .catch((error) => {
         alert(error.response.data.message);
       });
+
+    axiosInstance.post('/votes');
   };
 
   return (
@@ -54,7 +56,7 @@ function FormaInitAdd({ setInits }) {
 
       <Form.Group className="mb-3" controlId="formGridAddress2">
         <Form.Label>DateEnd</Form.Label>
-        <Form.Control placeholder="DateEnd" name="dateEnd" />
+        <Form.Control placeholder="DateEnd" name="dateEnd" type="date" />
       </Form.Group>
 
       <Row className="mb-3">
