@@ -14,17 +14,20 @@ import axios from 'axios';
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user, setUser } =
     useUser();
-
+  const [filter, setFilter] = useState(null);
+  const [search, setSearch] = useState(null);
   const [inits, setInits] = useState([]);
   useEffect(() => {
     axios('/api/inits').then(({ data }) => {
       setInits(data);
     });
   }, []);
+  console.log(inits);
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Layout user={user} logoutHandler={logoutHandler} />,
+      element: <Layout user={user} logoutHandler={logoutHandler}  />,
       children: [
         {
           path: '/',
@@ -35,12 +38,30 @@ function App() {
           element: <OneInitPage user={user} />,
         },
         {
-          path: '/users/:id',
-          element: <OneUserPage user={user} setUser={setUser} />,
-        },
-        {
-          path: '/inits/add',
-          element: <AddInitPage user={user} setInits={setInits} />,
+          element: <ProtectedRouter isAllowed={user.status === 'logged'} />,
+          children: [
+            {
+              path: '/users/:id',
+              element: <OneUserPage user={user} setUser={setUser} />,
+            },
+            {
+              element: (
+                <ProtectedRouter
+                  isAllowed={
+                    user.data?.fedDistrict &&
+                    user.data?.region &&
+                    user.data?.municipality
+                  }
+                />
+              ),
+              children: [
+                {
+                  path: '/inits/add',
+                  element: <AddInitPage user={user} setInits={setInits} />,
+                },
+              ],
+            },
+          ],
         },
         {
           element: <ProtectedRouter isAllowed={user.status !== 'logged'} />,

@@ -20,14 +20,11 @@ export default function NavBar({ user, logoutHandler }) {
                 user.data.municipality &&
                 user.data.region && (
                   <NavLink to="/inits/add" className="nav-link">
-                    Добавить
+                    Добавить инициативу
                   </NavLink>
                 )}
               <NavLink to={`/users/${user?.data.id}`} className="nav-link">
                 Профиль
-              </NavLink>
-              <NavLink to={`/inits/add`} className="nav-link">
-                Добавить инициативу
               </NavLink>
             </>
           )}
