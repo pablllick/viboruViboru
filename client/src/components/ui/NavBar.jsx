@@ -23,9 +23,6 @@ export default function NavBar({ user, logoutHandler }) {
                     Добавить инициативу
                   </NavLink>
                 )}
-              <NavLink to={`/users/${user?.data.id}`} className="nav-link">
-                Профиль
-              </NavLink>
             </>
           )}
         </Nav>
@@ -41,10 +38,14 @@ export default function NavBar({ user, logoutHandler }) {
               <span className="nav-link">|</span>
             </>
           )}
-
-          <span className="nav-link">
-            {user.data ? user.data.name : 'Гость'}
-          </span>
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            to={`/users/${user?.data?.id}`}
+          >
+            <span className="nav-link">
+              {user.data ? user.data.name : 'Гость'}
+            </span>
+          </NavLink>
           {user.data && (
             <span className="nav-link">
               <Button

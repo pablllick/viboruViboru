@@ -21,7 +21,12 @@ export default function OneUserPage({ setUser, user }) {
       {show ? (
         <FormaUser key={user.id} user={user.data} clickHandler={clickHandler} />
       ) : (
-        <FormaUpdateUser setUser={setUser} user={user} />
+        <FormaUpdateUser
+          show={show}
+          setShow={setShow}
+          setUser={setUser}
+          user={user}
+        />
       )}
     </div>
   );

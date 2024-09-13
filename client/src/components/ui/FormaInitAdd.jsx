@@ -3,8 +3,10 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import axiosInstance from '../api/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 function FormaInitAdd({ setInits }) {
+  const navigate = useNavigate();
   const addInitHandler = (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
@@ -29,50 +31,47 @@ function FormaInitAdd({ setInits }) {
       });
 
     axiosInstance.post('/votes');
+    navigate('/');
   };
 
   return (
     <Form onSubmit={addInitHandler}>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" name="name" />
+          <Form.Label>Название</Form.Label>
+          <Form.Control type="text" placeholder="Название" name="name" />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>motivation</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="motivation"
-            name="motivation"
-          />
+          <Form.Label>Мотивация</Form.Label>
+          <Form.Control type="text" placeholder="Мотивация" name="motivation" />
         </Form.Group>
       </Row>
 
       <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Theme</Form.Label>
-        <Form.Control placeholder="Theme" name="theme" />
+        <Form.Label>Тема</Form.Label>
+        <Form.Control placeholder="Тема" name="theme" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formGridAddress2">
-        <Form.Label>DateEnd</Form.Label>
+        <Form.Label>Дата Окончания</Form.Label>
         <Form.Control placeholder="DateEnd" name="dateEnd" type="date" />
       </Form.Group>
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>Level</Form.Label>
+          <Form.Label>Уровень</Form.Label>
           <Form.Select name="level" defaultValue="Level...">
-            <option>Level...</option>
-            <option>FedDistrict</option>
-            <option>Region</option>
-            <option>Municipality</option>
+            <option>Уровень...</option>
+            <option>Федеральный Округ</option>
+            <option>Регион</option>
+            <option>Муниципалитет</option>
           </Form.Select>
         </Form.Group>
       </Row>
 
       <Button variant="primary" type="submit">
-        Submit
+        Подтвердить
       </Button>
     </Form>
   );
