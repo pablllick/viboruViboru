@@ -4,8 +4,16 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
+import FilterSearchUi from './FilterSearchUi';
 
-export default function NavBar({ user, logoutHandler }) {
+export default function NavBar({
+  user,
+  logoutHandler,
+  filter,
+  search,
+  setFilter,
+  setSearch,
+}) {
   return (
     <Navbar bg="light" data-bs-theme="light">
       <Container>
@@ -23,9 +31,15 @@ export default function NavBar({ user, logoutHandler }) {
                     Добавить инициативу
                   </NavLink>
                 )}
-              <NavLink to={`/users/${user?.data.id}`} className="nav-link">
+              <NavLink to={`/users/${user?.data?.id}`} className="nav-link">
                 Профиль
               </NavLink>
+              <FilterSearchUi
+                filter={filter}
+                search={search}
+                setSearch={setSearch}
+                setFilter={setFilter}
+              />
             </>
           )}
         </Nav>

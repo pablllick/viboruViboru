@@ -51,12 +51,10 @@ userRouter
     try {
       const { name, lastName, surname, email } = req.body;
 
-      // Проверка наличия всех обязательных полей
       if (!name || !lastName || !surname || !email) {
         return res.status(400).json({ message: 'Заполните все поля' });
       }
 
-      // Создание нового пользователя
       const newUser = await User.create({
         name,
         lastName,
@@ -64,7 +62,6 @@ userRouter
         email,
       });
 
-      // Удаление чувствительных данных перед отправкой ответа
       const user = newUser.get();
       delete user.hashpass;
       delete user.createdAt;

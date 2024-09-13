@@ -8,7 +8,7 @@ initRouter
   .route('/')
   .get(async (req, res) => {
     try {
-      res.json(await Init.findAll());
+      res.json(await Init.findAll({ include: { model: User } }));
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
