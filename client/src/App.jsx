@@ -14,8 +14,8 @@ import axios from 'axios';
 function App() {
   const { logoutHandler, signInHandler, signUpHandler, user, setUser } =
     useUser();
-  const [filter, setFilter] = useState(null);
-  const [search, setSearch] = useState(null);
+  const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
   const [inits, setInits] = useState([]);
   useEffect(() => {
     axios('/api/inits').then(({ data }) => {
@@ -27,11 +27,27 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Layout user={user} logoutHandler={logoutHandler}  />,
+      element: (
+        <Layout
+          user={user}
+          logoutHandler={logoutHandler}
+          filter={filter}
+          search={search}
+          setFilter={setFilter}
+          setSearch={setSearch}
+        />
+      ),
       children: [
         {
           path: '/',
-          element: <MainPage user={user} inits={inits} />,
+          element: (
+            <MainPage
+              user={user}
+              inits={inits}
+              filter={filter}
+              search={search}
+            />
+          ),
         },
         {
           path: '/inits/:id',

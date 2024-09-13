@@ -104,8 +104,8 @@ module.exports = {
         name: initiativeNames[i],
         motivation: motivations[i],
         level: levels[Math.floor(Math.random() * levels.length)],
-        dateEnd: new Date(2024, 11, 31), // 31 декабря 2024 года
-        authorId: Math.floor(Math.random() * 5) + 1, // authorId от 1 до 5
+        dateEnd: new Date(2024, 11, 31),
+        authorId: Math.floor(Math.random() * 5) + 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -113,19 +113,16 @@ module.exports = {
 
     await queryInterface.bulkInsert('Inits', inits, {});
     const userInitVotes = [];
-    const totalUsers = 5; // Предположим, что есть 5 пользователей
-    const totalInits = 12; // Предположим, что есть 12 инициатив
+    const totalUsers = 5;
+    const totalInits = 12;
 
-    // Создаем массив уникальных комбинаций userId и initId
     const userInitPairs = new Set();
 
-    // Генерация 30 уникальных записей
     while (userInitVotes.length < 30) {
-      const userId = Math.floor(Math.random() * totalUsers) + 1; // userId от 1 до 5
-      const initId = Math.floor(Math.random() * totalInits) + 1; // initId от 1 до 12
-      const vote = Math.random() < 0.5; // true или false
+      const userId = Math.floor(Math.random() * totalUsers) + 1;
+      const initId = Math.floor(Math.random() * totalInits) + 1;
+      const vote = Math.random() < 0.5;
 
-      // Проверка, что комбинация userId и initId уникальна
       const pairKey = `${userId}-${initId}`;
       if (!userInitPairs.has(pairKey)) {
         userInitPairs.add(pairKey);
@@ -140,12 +137,5 @@ module.exports = {
     await queryInterface.bulkInsert('UserInits', userInitVotes, {});
   },
 
-  async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  },
+  async down(queryInterface, Sequelize) {},
 };
