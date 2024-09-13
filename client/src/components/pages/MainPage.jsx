@@ -12,7 +12,9 @@ export default function MainPage({ inits, filter, search }) {
         ?.filter((init) => {
           return (
             (filter ? init.level === filter : true) &&
-            (search ? init.name.includes(search) : true)
+            (search
+              ? init.name.toLowerCase().includes(search.toLowerCase())
+              : true)
           );
         })
         ?.map((init) => (

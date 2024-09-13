@@ -7,9 +7,14 @@ function InitCardUi({ init }) {
 
   return (
     <Card>
-      <Card.Header>{init.name}</Card.Header>
+      <Card.Header>
+        <Card.Title style={{ marginTop: '2.5%' }}>
+          <p>{init.name}</p>
+        </Card.Title>
+      </Card.Header>
       <Card.Body>
-        <Card.Title>{init.level}</Card.Title>
+        <p>Уровень: {init.level}</p>
+
         <Card.Text>
           {init.motivation.slice(0, 40) +
             (init.motivation.length > 40 ? '...' : '')}

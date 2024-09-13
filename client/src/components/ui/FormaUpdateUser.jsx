@@ -3,7 +3,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import axiosInstance from '../api/axiosInstance';
 
-function FormaUpdateUser({ setUser, user }) {
+function FormaUpdateUser({ setUser, user,setShow,show  }) {
   const updateHandler = (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
@@ -25,17 +25,19 @@ function FormaUpdateUser({ setUser, user }) {
       .catch((error) => {
         alert(error);
       });
+      setShow(!show);
   };
+
 
   return (
     <>
       <Form onSubmit={updateHandler}>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1" style={{ width: '10%' }}>
-            Name
+          <InputGroup.Text id="basic-addon1" style={{ width: '15%' }}>
+            Имя
           </InputGroup.Text>
           <Form.Control
-            placeholder="Name"
+            placeholder="Введите ваше имя"
             defaultValue={user.data.name}
             name="name"
             aria-label="Username"
@@ -43,35 +45,35 @@ function FormaUpdateUser({ setUser, user }) {
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1" style={{ width: '10%' }}>
-            lastName
+          <InputGroup.Text id="basic-addon1" style={{ width: '15%' }}>
+            Фамилия
           </InputGroup.Text>
           <Form.Control
             defaultValue={user.data.lastName}
             name="lastName"
-            placeholder="lastName"
+            placeholder="Введите вашу Фамилию"
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1" style={{ width: '10%' }}>
-            surname
+          <InputGroup.Text id="basic-addon1" style={{ width: '15%' }}>
+            Отчество
           </InputGroup.Text>
           <Form.Control
             defaultValue={user.data.surname}
             name="surname"
-            placeholder="surname"
+            placeholder="Введите ваше Отчество"
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1" style={{ width: '10%' }}>
-            fedDistrict
+          <InputGroup.Text id="basic-addon1" style={{ width: '15%' }}>
+            Федеральный Округ
           </InputGroup.Text>
           <Form.Control
-            placeholder="fedDistrict"
+            placeholder="Введите ваш Федеральный округ"
             aria-label="Username"
             aria-describedby="basic-addon1"
             defaultValue={user.data.fedDistrict}
@@ -79,31 +81,31 @@ function FormaUpdateUser({ setUser, user }) {
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1" style={{ width: '10%' }}>
-            region
+          <InputGroup.Text id="basic-addon1" style={{ width: '15%' }}>
+            Регион
           </InputGroup.Text>
           <Form.Control
             defaultValue={user.data.region}
             name="region"
-            placeholder="region"
+            placeholder="Введите ваш Регион"
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
         </InputGroup>
         <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1" style={{ width: '10%' }}>
-            municipality
+          <InputGroup.Text id="basic-addon1" style={{ width: '15%' }}>
+            Муниципалитет
           </InputGroup.Text>
           <Form.Control
             defaultValue={user.data.municipality}
             name="municipality"
-            placeholder="municipality"
+            placeholder="Введите ваш Муниципалитет"
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
         </InputGroup>
-        <Button variant="outline-success" type="submit">
-          Success
+        <Button variant="outline-success" type="submit" >
+          Подтвердить
         </Button>{' '}
       </Form>
     </>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { Init, User } = require('../../db/models');
+const { Init, User, UserInit } = require('../../db/models');
 const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
 const initRouter = express.Router();
@@ -18,16 +18,20 @@ initRouter
     try {
       const { user } = res.locals;
       const { name, motivation, level, theme, dateEnd } = req.body;
-      res.json(
-        await Init.create({
-          name,
-          motivation,
-          level,
-          theme,
-          dateEnd,
-          authorId: user.id,
-        })
-      );
+      const newInit = await Init.create({
+        name,
+        motivation,
+        level,
+        theme,
+        dateEnd,
+        userId: user.id,
+      });
+      await UserInit.create({
+        userId: user.id,
+        initId: newInit.id,
+        vote: true,
+      });
+      res.json(newInit);
     } catch (error) {
       console.log(error);
       res.sendStatus(500);

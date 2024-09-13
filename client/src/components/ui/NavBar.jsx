@@ -31,9 +31,7 @@ export default function NavBar({
                     Добавить инициативу
                   </NavLink>
                 )}
-              <NavLink to={`/users/${user?.data?.id}`} className="nav-link">
-                Профиль
-              </NavLink>
+
               <FilterSearchUi
                 filter={filter}
                 search={search}
@@ -55,10 +53,14 @@ export default function NavBar({
               <span className="nav-link">|</span>
             </>
           )}
-
-          <span className="nav-link">
-            {user.data ? user.data.name : 'Гость'}
-          </span>
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            to={`/users/${user?.data?.id}`}
+          >
+            <span className="nav-link">
+              {user.data ? user.data.name : 'Гость'}
+            </span>
+          </NavLink>
           {user.data && (
             <span className="nav-link">
               <Button
