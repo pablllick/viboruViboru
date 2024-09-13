@@ -7,8 +7,6 @@ function FormaUpdateUser({ setUser, user }) {
   const updateHandler = (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
-    console.log('--------------------------', formData);
-
     if (
       !formData.name ||
       !formData.lastName ||
