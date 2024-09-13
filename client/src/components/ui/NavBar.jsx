@@ -26,9 +26,6 @@ export default function NavBar({ user, logoutHandler }) {
               <NavLink to={`/users/${user?.data.id}`} className="nav-link">
                 Профиль
               </NavLink>
-              <NavLink to={`/inits/add`} className="nav-link">
-                Добавить инициативу
-              </NavLink>
             </>
           )}
         </Nav>
