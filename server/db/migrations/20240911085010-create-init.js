@@ -14,6 +14,7 @@ module.exports = {
       motivation: {
         type: Sequelize.TEXT,
       },
+      picture: { allowNull: true, type: Sequelize.STRING },
       level: {
         type: Sequelize.STRING,
       },

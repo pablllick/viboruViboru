@@ -21,11 +21,12 @@ module.exports = (sequelize, DataTypes) => {
       fedDistrict: DataTypes.STRING,
       region: DataTypes.STRING,
       municipality: DataTypes.STRING,
+      picture: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: 'User',
-    },
+    }
   );
   return User;
 };

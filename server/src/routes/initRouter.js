@@ -1,4 +1,7 @@
 const express = require('express');
+const sharp = require('sharp');
+const fs = require('fs/promises');
+const upload = require('../middlewares/multerMiddleware');
 const { Init, User, UserInit } = require('../../db/models');
 const verifyAccessToken = require('../middlewares/verifyAccessToken');
 
@@ -14,17 +17,25 @@ initRouter
       res.sendStatus(500);
     }
   })
-  .post(verifyAccessToken, async (req, res) => {
+  .post(verifyAccessToken, upload.single('file'), async (req, res) => {
     try {
-      const { user } = res.locals;
+      if (!req.file) {
+        return res.status(400).json({ message: 'File not found' });
+      }
+      const pictureName = `${Date.now()}.webp`;
       const { name, motivation, level, theme, dateEnd } = req.body;
+      const outputBuffer = await sharp(req.file.buffer).webp().toBuffer();
+      await fs.writeFile(`./public/${pictureName}`, outputBuffer);
+      const { user } = res.locals;
+
       const newInit = await Init.create({
         name,
         motivation,
         level,
         theme,
         dateEnd,
-        userId: user.id,
+        authorId: user.id,
+        picture: pictureName,
       });
       await UserInit.create({
         userId: user.id,

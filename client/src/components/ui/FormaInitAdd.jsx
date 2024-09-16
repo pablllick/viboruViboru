@@ -7,22 +7,36 @@ import { useNavigate } from 'react-router-dom';
 
 function FormaInitAdd({ setInits }) {
   const navigate = useNavigate();
+
   const addInitHandler = (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
-    console.log('--------------------------', formData);
 
     if (
       !formData.name ||
       !formData.motivation ||
       !formData.theme ||
       !formData.dateEnd ||
-      !formData.level
+      !formData.level ||
+      !formData.file
     ) {
       return alert('Заполните все поля!');
     }
+
+    const trueFormData = new FormData();
+
+    trueFormData.append('name', formData.name);
+    trueFormData.append('motivation', formData.motivation);
+    trueFormData.append('theme', formData.theme);
+    trueFormData.append('dateEnd', formData.dateEnd);
+    trueFormData.append('level', formData.level);
+    trueFormData.append('file', formData.file);
+
+    console.log('--------------------------', Object.fromEntries(trueFormData));
     axiosInstance
-      .post('/inits', formData)
+      .post('/inits', trueFormData, {
+        headers: { 'Content-type': 'multipart/formdata' },
+      })
       .then(({ data }) => {
         setInits((prev) => [...prev, data]);
       })
@@ -30,7 +44,6 @@ function FormaInitAdd({ setInits }) {
         alert(error.response.data.message);
       });
 
-    axiosInstance.post('/votes');
     navigate('/');
   };
 
@@ -69,7 +82,10 @@ function FormaInitAdd({ setInits }) {
           </Form.Select>
         </Form.Group>
       </Row>
-
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Image</Form.Label>
+        <Form.Control name="file" type="file" placeholder="Enter text" />
+      </Form.Group>
       <Button variant="primary" type="submit">
         Подтвердить
       </Button>

@@ -31,7 +31,11 @@ function FormaInit({ init, user }) {
 
   return (
     <Card style={{ width: '70rem' }}>
-      <Card.Img variant="top" src={init.url} />
+      <Card.Img
+        variant="top"
+        style={{ width: '100%', height: 400, objectFit: 'cover' }}
+        src={`http://localhost:3000/${init.picture}`}
+      />
       <Card.Body>
         <Card.Title>{init.name}</Card.Title>
         <Card.Text>{init.motivation}</Card.Text>

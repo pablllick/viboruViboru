@@ -105,6 +105,7 @@ module.exports = {
         motivation: motivations[i],
         level: levels[Math.floor(Math.random() * levels.length)],
         dateEnd: new Date(2024, 11, 31),
+        picture: `${i + 1}.jpeg`,
         authorId: Math.floor(Math.random() * 5) + 1,
         createdAt: new Date(),
         updatedAt: new Date(),
